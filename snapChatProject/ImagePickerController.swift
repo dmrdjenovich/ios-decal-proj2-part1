@@ -10,11 +10,17 @@ import UIKit
 
 class ImagePickerController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
+    var chosenImage : UIImage?;
+    
     @IBOutlet var imageCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.imageCollectionView.collectionViewLayout = ImageFlowLayout.init()
         self.imageCollectionView.backgroundColor = UIColor.lightGray
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationItem.title = "Snapchat 2.0";
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +30,14 @@ class ImagePickerController: UIViewController, UICollectionViewDataSource, UICol
 
     func selectImage(_ image: UIImage) {
         //The image being selected is passed in as "image".
+        chosenImage = image;
+        performSegue(withIdentifier:"postImage", sender:nil);
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        (segue.destination as! FeedTable).imageSelection = chosenImage;
+        (segue.destination as! FeedTable).statusIndicator = navigationItem;
+    }
     
     
     //DON'T MODIFY CODE HERE AND BELOW!

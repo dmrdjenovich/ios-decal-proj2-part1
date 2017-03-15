@@ -12,6 +12,7 @@ class PostNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewDidAppear(false);
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,6 +27,7 @@ class PostNavigationController: UINavigationController {
         self.navigationBar.barTintColor = UIColor.darkGray
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont.systemFont(ofSize: 30)]
         self.navigationBar.tintColor = UIColor.white
-        self.navigationBar.backItem?.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        self.navigationBar.backItem?.backBarButtonItem = UIBarButtonItem(title:nil, style:.plain, target:nil, action:nil)
+
     }
 }
